@@ -26,4 +26,16 @@ jobs:
       - name: Printing run-job boolean value
         if: ${{ inputs.run-job == true }}
         run: echo "${{ inputs.run-job }}"
-        
+
+  logs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: store logs
+        run: |
+          store-logs=$(curl -L \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GH_PATS }}" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          https://api.github.com/repos/vajrapu-srikanth02/lab2/actions/jobs/46445979401)
+
+          echo $store-logs >> /root/job2.log
