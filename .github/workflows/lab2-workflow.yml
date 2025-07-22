@@ -19,6 +19,8 @@ jobs:
       - run: echo "Exploring Workflow Dispatch Trigger"
   job2:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: Printing Custom Message
         run: echo "${{ inputs.custom-message }}" 
